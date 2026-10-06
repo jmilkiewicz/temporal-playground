@@ -27,6 +27,9 @@ Skipping Test Server binary and caches it in `$TMPDIR`, so that first run needs 
 On Apple Silicon the SDK downloads a native arm64 binary, so Rosetta is not needed. The comment
 in the SDK typings that says otherwise is outdated.
 
+Shared test helpers belong in `src/test-utils/`. Like `*.test.ts` files, that directory is
+excluded from the build (`tsconfig.build.json`).
+
 ### Why Jest rather than Vitest
 
 Jest (+ `ts-jest`) is the only one of the two that the
@@ -36,6 +39,15 @@ list its requirements (Jest >= 27, `testEnvironment: "node"`) and base their `be
 on the SDK side guarantees it.
 
 Note: `ts-jest` 29.4 requires TypeScript `<7`, which is why TypeScript is pinned to 6.0.3.
+
+## Formatting
+
+Code is formatted with Prettier (pinned in `devDependencies`, config in `.prettierrc.json`).
+
+```sh
+npm run format        # rewrite files in place
+npm run format:check  # fail if anything is not formatted
+```
 
 ## Running manually against a server (docker-compose)
 
